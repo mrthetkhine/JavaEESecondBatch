@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+ <html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:th="http://www.thymeleaf.org">
+   <head>
+     <title>Spring Boot App</title>
+   </head>
+   <body>
+     <h1>Welcome to...</h1>
+     <!-- 
+     
+     <img th:src="@{/images/java.png}"/>
+      -->
+     <div th:object="${user}">
+     	Name <span th:text="*{name}"></span></p>
+     	Email <span th:text="*{email}"></span>
+     </div>
+</body>
+</html>
