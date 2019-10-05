@@ -14,12 +14,16 @@
       	  <thead>
       	  	<tr>
       	  		<th>Name </th>
-      	  		<th>Email</th>
+      	  		<th>Email >></th>
       	  	</tr>
       	  </thead>
 	      <tr th:each="user: ${users}">
 	     	<td> <span th:text="${user.name}"></span></td>
-	     	<td> <span th:text="${user.email}"></span></td>
+	     	<td> <span th:text="${user.email}"></span>
+	     	 <span class="validationError"
+              th:if="${#fields.hasErrors('email')}"
+              th:errors="*{email}">Email have error</span>
+	     	</td>
 	      </tr>
       </table>
      

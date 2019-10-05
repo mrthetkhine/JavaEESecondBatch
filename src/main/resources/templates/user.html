@@ -12,7 +12,8 @@
       -->
      <div th:object="${user}">
      	Name <span th:text="*{name}"></span></p>
-     	Email <span th:text="*{email}"></span>
+     	Email <span th:field="*{email}"></span>
+     	
      </div>
 </body>
 </html>
