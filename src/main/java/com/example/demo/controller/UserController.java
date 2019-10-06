@@ -30,7 +30,7 @@ public class UserController {
 		Iterable<User> users = this.userRepository.findAll();
 		
 		model.addAttribute("users", users);
-		System.out.println("Controller User");
+		System.out.println("Controller User list");
 		return "user/users";
 	}
 	@GetMapping("/new")
@@ -71,5 +71,12 @@ public class UserController {
 		User user = this.userRepository.findOne(id);
 		model.addAttribute("user", user);
 		return "user/new";
+	}
+	@GetMapping("/delete/{id}")
+	public String deleteUser(@PathVariable Long id)
+	{
+		System.out.println("User id in delete "+id);
+		this.userRepository.delete(id);
+		return "redirect:/user/list";
 	}
 }
