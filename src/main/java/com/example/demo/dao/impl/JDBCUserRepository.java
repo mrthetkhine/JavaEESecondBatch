@@ -45,5 +45,15 @@ public class JDBCUserRepository implements UserRepository{
 		      rs.getString("email"));
 		}
 
+	@Override
+	public User update(User user) {
+		jdbc.update(
+			      "Update User set  name=?, email=? WHERE id=?",
+			      user.getName(),
+			      user.getEmail(),
+			      user.getId());
+		return user;
+	}
+
 
 }

@@ -13,7 +13,8 @@
    <body>
      <h1>Welcome to...</h1>
     
-     <form method="POST" th:object="${user}">
+     <form method="POST" th:object="${user}" action="/user/new">
+     	<input type="hidden"  th:field="*{id}" value="*{id}"></p>
      	Name <input type="text"  th:field="*{name}" value="*{name}"></p>
      	Email <input type="text" th:field="*{email}" value="*{email}">
      	<span class="validationError"
