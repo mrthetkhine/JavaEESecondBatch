@@ -37,4 +37,10 @@ public class UserServiceImpl implements UserService{
 		this.userJpaRepsitory.save(user);
 	}
 
+	@Override
+	public void deleteById(Long id) {
+		this.userJpaRepsitory.deleteById(id);
+		
+	}
+
 }

@@ -73,7 +73,7 @@ public class UserController {
 	public String deleteUser(@PathVariable Long id)
 	{
 		System.out.println("User id in delete "+id);
-		this.userRepository.delete(id);
+		this.userService.deleteById(id);
 		return "redirect:/user/list";
 	}
 }
