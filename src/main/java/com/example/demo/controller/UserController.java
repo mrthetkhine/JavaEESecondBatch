@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.dao.UserRepository;
 import com.example.demo.dto.UserDto;
+import com.example.demo.dto.UserSearchDto;
 import com.example.demo.service.UserService;
 
 @Controller
@@ -73,7 +74,24 @@ public class UserController {
 	public String deleteUser(@PathVariable Long id)
 	{
 		System.out.println("User id in delete "+id);
-		this.userRepository.delete(id);
+		this.userService.deleteById(id);
 		return "redirect:/user/list";
+	}
+	
+	@GetMapping("/searchUser")
+	public String searchUser(Model model)
+	{
+		UserSearchDto search = new UserSearchDto();
+		model.addAttribute("search", search);
+		return "user/searchUser";
+	}
+	
+	@PostMapping("/searchUser")
+	public String searchUserPost(UserSearchDto search,Model model)
+	{
+		System.out.println("Search name "+search.getName());
+		UserSearchDto param = new UserSearchDto();
+		model.addAttribute("search", param);
+		return "user/searchUser";
 	}
 }
