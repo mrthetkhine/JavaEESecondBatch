@@ -52,6 +52,14 @@ public class UserDto {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+	public User getEntity()
+	{
+		User user = new User();
+		user.setId(this.id);
+		user.setEmail(this.email);
+		user.setName(this.name);
+		
+		return user;
+	}
 	
 }

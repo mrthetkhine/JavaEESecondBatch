@@ -6,4 +6,6 @@ import com.example.demo.dto.*;
 public interface UserService {
 
 	List<UserDto> getAllUser();
+	
+	void save(UserDto dto);
 }

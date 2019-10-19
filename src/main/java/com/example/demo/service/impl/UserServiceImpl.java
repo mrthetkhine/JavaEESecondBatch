@@ -30,4 +30,11 @@ public class UserServiceImpl implements UserService{
 		return userDtos;
 	}
 
+	@Override
+	public void save(UserDto dto) {
+		
+		User user = dto.getEntity();
+		this.userJpaRepsitory.save(user);
+	}
+
 }

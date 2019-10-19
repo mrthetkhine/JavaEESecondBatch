@@ -54,14 +54,7 @@ public class UserController {
 		}
 		else
 		{
-			if( user.getId() != null)
-			{
-				this.userRepository.update(user);
-			}
-			else
-			{
-				this.userRepository.save(user);
-			}
+			this.userService.save(user);
 			
 			return "redirect:/user/list";
 		}
