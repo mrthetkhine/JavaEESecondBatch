@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.dao.UserRepository;
 import com.example.demo.dto.UserDto;
+import com.example.demo.service.UserService;
 
 @Controller
 @RequestMapping("/user")
@@ -24,10 +25,13 @@ public class UserController {
 	@Autowired
 	UserRepository userRepository;
 	
+	@Autowired
+	UserService userService;
+	
 	@GetMapping("/list")
 	public String users(Model model)
 	{
-		Iterable<UserDto> users = this.userRepository.findAll();
+		List<UserDto> users = this.userService.getAllUser();
 		
 		model.addAttribute("users", users);
 		System.out.println("Controller User list");

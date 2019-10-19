@@ -3,6 +3,8 @@ package com.example.demo.dto;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.example.demo.entity.User;
+
 public class UserDto {
 
 	Long id;
@@ -15,6 +17,13 @@ public class UserDto {
 	@Size(min=5, message="Email must be at least 5 characters long")
 	String email;
 	
+	public UserDto(User user)
+	{
+		this.id = user.getId();
+		this.name = user.getName();
+		this.email = user.getEmail();
+		
+	}
 	public UserDto(Long id, String name, String email)
 	{
 		this.id = id;
