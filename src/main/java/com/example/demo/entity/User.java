@@ -1,18 +1,35 @@
-package com.example.demo.dto;
+package com.example.demo.entity;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class User {
+@Entity
+@Table(name="user")
+public class User implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	Long id;
 	
-	@NotNull
-	@Size(min=5, message="Name must be at least 5 characters long")
+	@Column(name="name")
 	String name;
 	
-	@NotNull
-	@Size(min=5, message="Email must be at least 5 characters long")
+	@Column(name="email")
 	String email;
 	
 	public User(Long id, String name, String email)

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.dao.UserRepository;
-import com.example.demo.dto.User;
+import com.example.demo.dto.UserDto;
 
 @Controller
 @RequestMapping("/user")
@@ -27,7 +27,7 @@ public class UserController {
 	@GetMapping("/list")
 	public String users(Model model)
 	{
-		Iterable<User> users = this.userRepository.findAll();
+		Iterable<UserDto> users = this.userRepository.findAll();
 		
 		model.addAttribute("users", users);
 		System.out.println("Controller User list");
@@ -36,12 +36,12 @@ public class UserController {
 	@GetMapping("/new")
 	public String newUser(Model model)
 	{
-		User user = new User();
+		UserDto user = new UserDto();
 		model.addAttribute("user", user);
 		return "user/new";
 	}
 	@PostMapping("/new")
-	public String createUser(@Valid User user,Errors error)
+	public String createUser(@Valid UserDto user,Errors error)
 	{
 		if( error.hasErrors())
 		{
@@ -68,7 +68,7 @@ public class UserController {
 	public String editUser(@PathVariable Long id,Model model)
 	{
 		System.out.println("User id in eidt "+id);
-		User user = this.userRepository.findOne(id);
+		UserDto user = this.userRepository.findOne(id);
 		model.addAttribute("user", user);
 		return "user/new";
 	}

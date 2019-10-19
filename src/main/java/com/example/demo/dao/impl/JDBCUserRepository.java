@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.dao.UserRepository;
-import com.example.demo.dto.User;
+import com.example.demo.dto.UserDto;
 
 @Repository
 public class JDBCUserRepository implements UserRepository{
@@ -17,36 +17,36 @@ public class JDBCUserRepository implements UserRepository{
 	private JdbcTemplate jdbc;
 	
 	@Override
-	public Iterable<User> findAll() {
+	public Iterable<UserDto> findAll() {
 		return jdbc.query("select id, name, email from User",
 			      this::mapRowToUser);
 	}
 
 	@Override
-	public User findOne(Long id) {
+	public UserDto findOne(Long id) {
 		return jdbc.queryForObject(
 			      "select id, name, email from User where id=?",
 			      this::mapRowToUser, id);
 	}
 
 	@Override
-	public User save(User user) {
+	public UserDto save(UserDto user) {
 		jdbc.update(
 			      "insert into User ( name, email) values (?, ?)",
 			      user.getName(),
 			      user.getEmail());
 		return user;
 	}
-	private User mapRowToUser(ResultSet rs, int rowNum)
+	private UserDto mapRowToUser(ResultSet rs, int rowNum)
 		    throws SQLException {
-		  return new User(
+		  return new UserDto(
 		      rs.getLong("id"),
 		      rs.getString("name"),
 		      rs.getString("email"));
 		}
 
 	@Override
-	public User update(User user) {
+	public UserDto update(UserDto user) {
 		jdbc.update(
 			      "Update User set  name=?, email=? WHERE id=?",
 			      user.getName(),
