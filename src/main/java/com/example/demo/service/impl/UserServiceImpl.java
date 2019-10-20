@@ -43,6 +43,7 @@ public class UserServiceImpl implements UserService{
 		
 	}
 
+
 	@Override
 	public List<UserDto> searchUserByName(String name) {
 		List<User> users = this.userJpaRepsitory.findUserByName(name);
