@@ -21,5 +21,25 @@
         </p>      
      	<button type="submit">Submit</button>
      </form>
+     <table border="1">
+      	  <thead>
+      	  	<tr>
+      	  		<th>ID</th>
+      	  		<th>Name </th>
+      	  		<th>Email</th>
+      	  		<th>Action</th>
+      	  	</tr>
+      	  </thead>
+	      <tr th:each="user: ${users}">
+	      	<td> <span th:text="${user.id}"></span></td>
+	     	<td> <span th:text="${user.name}"></span></td>
+	     	<td> <span th:text="${user.email}"></span>
+	     	<td>
+	     		<a th:href='@{/user/edit/{id}(id=${user.id})}'>Edit</a>
+	     		&nbsp;
+	     		<a th:href='@{/user/delete/{id}(id=${user.id})}'>Delete</a>
+	     	</td>
+	      </tr>
+      </table>
 </body>
 </html>

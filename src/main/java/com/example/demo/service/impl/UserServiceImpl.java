@@ -43,4 +43,17 @@ public class UserServiceImpl implements UserService{
 		
 	}
 
+	@Override
+	public List<UserDto> searchUserByName(String name) {
+		List<User> users = this.userJpaRepsitory.findUserByName(name);
+		
+		List<UserDto> userDtos = new ArrayList<UserDto>();
+		for(User user : users)
+		{
+			UserDto dto = new UserDto(user);
+			userDtos.add(dto);
+		}
+		return userDtos;
+	}
+
 }

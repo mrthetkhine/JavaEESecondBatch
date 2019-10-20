@@ -92,6 +92,10 @@ public class UserController {
 		System.out.println("Search name "+search.getName());
 		UserSearchDto param = new UserSearchDto();
 		model.addAttribute("search", param);
+		
+		List<UserDto> users = this.userService.searchUserByName(search.getName());
+		
+		model.addAttribute("users", users);
 		return "user/searchUser";
 	}
 }
