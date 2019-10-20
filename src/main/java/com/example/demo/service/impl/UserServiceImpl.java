@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.UserJpaRespository;
 import com.example.demo.dto.UserDto;
+import com.example.demo.dto.UserNameEmailDto;
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 
@@ -46,13 +47,19 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public List<UserDto> searchUserByName(String name) {
-		List<User> users = this.userJpaRepsitory.findByNameLike(name);
+		List<User> users = this.userJpaRepsitory.findByNameLikeNative(name);
 		
 		List<UserDto> userDtos = new ArrayList<UserDto>();
 		for(User user : users)
 		{
 			UserDto dto = new UserDto(user);
 			userDtos.add(dto);
+		}
+		List<UserNameEmailDto> dtos = this.userJpaRepsitory.findUserNameEmail();
+		
+		for(UserNameEmailDto dto : dtos)
+		{
+			System.out.println("Name "+dto.getName() +" Email "+dto.getEmail());
 		}
 		return userDtos;
 	}
