@@ -52,6 +52,7 @@ public class UserServiceImpl implements UserService{
 		List<UserDto> userDtos = new ArrayList<UserDto>();
 		for(User user : users)
 		{
+			System.out.println("Class "+user.getClass().getSuperclass().getName());
 			UserDto dto = new UserDto(user);
 			userDtos.add(dto);
 		}
@@ -59,6 +60,7 @@ public class UserServiceImpl implements UserService{
 		
 		for(UserNameEmailDto dto : dtos)
 		{
+			System.out.println("Class "+dto.getClass());
 			System.out.println("Name "+dto.getName() +" Email "+dto.getEmail());
 		}
 		return userDtos;
