@@ -66,4 +66,10 @@ public class UserServiceImpl implements UserService{
 		return userDtos;
 	}
 
+	@Override
+	public int updateName(String name, Long id) {
+		
+		return this.userJpaRepsitory.updateUserName(name, id);
+	}
+
 }
