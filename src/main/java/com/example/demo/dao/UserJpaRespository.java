@@ -3,6 +3,7 @@ package com.example.demo.dao;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -14,7 +15,7 @@ import com.example.demo.dto.UserNameEmailDto;
 import com.example.demo.entity.User;
 
 @Repository
-public interface UserJpaRespository extends JpaRepository<User, Long> {
+public interface UserJpaRespository extends JpaRepository<User, Long>,JpaSpecificationExecutor<User> {
 
 	List<User> findByName(String name);
 	

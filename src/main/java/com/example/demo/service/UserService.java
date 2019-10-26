@@ -12,5 +12,7 @@ public interface UserService {
 	List<UserDto> searchUserByName(String name);
 	
 	int updateName(String name, Long id);
+	
+	List<UserDto> searchUserByNameOrEmail(UserSearchDto search);
 
 }

@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dao.UserJpaRespository;
 import com.example.demo.dto.UserDto;
 import com.example.demo.dto.UserNameEmailDto;
+import com.example.demo.dto.UserSearchDto;
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
+import com.example.demo.service.specification.UserSpecification;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -70,6 +72,20 @@ public class UserServiceImpl implements UserService{
 	public int updateName(String name, Long id) {
 		
 		return this.userJpaRepsitory.updateUserName(name, id);
+	}
+
+	@Override
+	public List<UserDto> searchUserByNameOrEmail(UserSearchDto search) {
+		List<User> users = this.userJpaRepsitory.findAll(UserSpecification.getUserByNameOrEmail(search));
+		
+		List<UserDto> userDtos = new ArrayList<UserDto>();
+		for(User user : users)
+		{
+			System.out.println("Class "+user.getClass().getSuperclass().getName());
+			UserDto dto = new UserDto(user);
+			userDtos.add(dto);
+		}
+		return userDtos;
 	}
 
 }
