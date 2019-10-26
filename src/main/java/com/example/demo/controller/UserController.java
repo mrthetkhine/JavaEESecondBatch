@@ -100,4 +100,24 @@ public class UserController {
 		model.addAttribute("users", users);
 		return "user/searchUser";
 	}
+	@GetMapping("/searchUserByNameOrEmail")
+	public String searchUserByNameOrEmail(Model model)
+	{
+		UserSearchDto search = new UserSearchDto();
+		model.addAttribute("search", search);
+		return "user/searchUserByNameOrEmail";
+	}
+	@PostMapping("/searchUserByNameOrEmail")
+	public String searchUserByNameOrEmailPost(UserSearchDto search,Model model)
+	{
+		System.out.println("Search name "+search.getName());
+		System.out.println("Search Email "+search.getEmail());
+		UserSearchDto param = new UserSearchDto();
+		model.addAttribute("search", param);
+		
+		List<UserDto> users = this.userService.searchUserByName(search.getName());
+		
+		model.addAttribute("users", users);
+		return "user/searchUser";
+	}
 }

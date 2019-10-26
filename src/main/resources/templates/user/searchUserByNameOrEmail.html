@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+ <html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:th="http://www.thymeleaf.org">
+   <head>
+     <title>Spring Boot App</title>
+     <style>
+     .validationError
+     {
+     	color:red;
+     }
+     </style>
+   </head>
+   <body>
+     <h1>Search</h1>
+    
+     <form method="POST" th:object="${search}" action="/user/searchUserByNameOrEmail">
+     	
+     	Name <input type="text"  th:field="*{name}" value="*{name}"></p>
+     	Email <input type="text"  th:field="*{email}" value="*{email}"></p>
+              
+        </p>      
+     	<button type="submit">Submit</button>
+     </form>
+     <table border="1">
+      	  <thead>
+      	  	<tr>
+      	  		<th>ID</th>
+      	  		<th>Name </th>
+      	  		<th>Email</th>
+      	  		<th>Action</th>
+      	  	</tr>
+      	  </thead>
+	      <tr th:each="user: ${users}">
+	      	<td> <span th:text="${user.id}"></span></td>
+	     	<td> <span th:text="${user.name}"></span></td>
+	     	<td> <span th:text="${user.email}"></span>
+	     	<td>
+	     		<a th:href='@{/user/edit/{id}(id=${user.id})}'>Edit</a>
+	     		&nbsp;
+	     		<a th:href='@{/user/delete/{id}(id=${user.id})}'>Delete</a>
+	     	</td>
+	      </tr>
+      </table>
+</body>
+</html>
