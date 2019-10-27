@@ -37,7 +37,7 @@ public class UserController {
 		model.addAttribute("users", users);
 		System.out.println("Controller User list");
 		
-		this.userService.updateName("TK", 1L);
+		//this.userService.updateName("TK", 1L);
 		return "user/users";
 	}
 	@GetMapping("/new")

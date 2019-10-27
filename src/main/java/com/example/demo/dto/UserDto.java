@@ -17,11 +17,14 @@ public class UserDto {
 	@Size(min=5, message="Email must be at least 5 characters long")
 	String email;
 	
+	String course;
+	
 	public UserDto(User user)
 	{
 		this.id = user.getId();
 		this.name = user.getName();
 		this.email = user.getEmail();
+		this.course = user.getCourse().getName();
 		
 	}
 	public UserDto(Long id, String name, String email)
@@ -60,6 +63,12 @@ public class UserDto {
 		user.setName(this.name);
 		
 		return user;
+	}
+	public String getCourse() {
+		return course;
+	}
+	public void setCourse(String course) {
+		this.course = course;
 	}
 	
 }

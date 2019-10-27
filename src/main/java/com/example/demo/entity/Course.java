@@ -7,15 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="user")
-public class User implements Serializable {
+@Table(name="course")
+public class Course implements Serializable {
 
 	/**
 	 * 
@@ -31,47 +29,34 @@ public class User implements Serializable {
 	@Column(name="name")
 	String name;
 	
-	@Column(name="email")
-	String email;
-	
-	@ManyToOne
-	@JoinColumn(name = "course_id")
-	Course course;
-	
-	public User(Long id, String name, String email)
-	{
-		this.id = id;
-		this.name = name;
-		this.email = email;
-	}
-	public User()
-	{
-		
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	@Column(name="description")
+	String description;
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Course getCourse() {
-		return course;
+
+	public String getName() {
+		return name;
 	}
-	public void setCourse(Course course) {
-		this.course = course;
+
+	public void setName(String name) {
+		this.name = name;
 	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	
 	
 	
 }

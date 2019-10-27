@@ -21,7 +21,6 @@ public class UserSpecification {
 				Predicate name = criteriaBuilder.equal(root.get("name"), search.getName());
 				Predicate email = criteriaBuilder.equal(root.get("email"), search.getEmail());
 				
-				
 				return criteriaBuilder.or(name , email);
 			}
 

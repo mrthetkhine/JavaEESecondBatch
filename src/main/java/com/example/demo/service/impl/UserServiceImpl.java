@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.UserJpaRespository;
@@ -22,6 +23,7 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public List<UserDto> getAllUser() {
+		System.out.println("Get All user sort by email");
 		List<User> users = this.userJpaRepsitory.findAll();
 		
 		List<UserDto> userDtos = new ArrayList<UserDto>();
