@@ -22,7 +22,10 @@
               th:errors="*{email}"></span>
      	</p>
      	
-              
+      Course <select th:field="*{courseId}">
+				<option th:each="course: ${courses}" th:value="${course.id}" th:text="${course.name}"/>
+			</select>
+		</p>
         </p>      
      	<button type="submit">Submit</button>
      </form>

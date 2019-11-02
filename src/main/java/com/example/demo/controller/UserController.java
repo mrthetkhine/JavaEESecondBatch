@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.dao.CourseJpaRepository;
 import com.example.demo.dao.UserRepository;
+import com.example.demo.dto.CourseDto;
 import com.example.demo.dto.UserDto;
 import com.example.demo.dto.UserSearchDto;
 import com.example.demo.entity.Course;
 import com.example.demo.entity.User;
+import com.example.demo.service.CourseService;
 import com.example.demo.service.UserService;
 
 @Controller
@@ -36,6 +38,9 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired
+	CourseService courseService;
+	
 	@GetMapping("/list")
 	public String users(Model model)
 	{
@@ -46,13 +51,7 @@ public class UserController {
 		
 		//this.userService.updateName("TK", 1L);
 		
-		List<Course> courses = this.courseRepository.findAll();
-		Course course = courses.get(0);
-		Set<User> courseUsers = course.getUsers();
-		for(User user : courseUsers)
-		{
-			System.out.println("Course "+ course.getName() + " Student "+user.getName());
-		}
+		
 		
 		return "user/users";
 	}
@@ -61,11 +60,16 @@ public class UserController {
 	{
 		UserDto user = new UserDto();
 		model.addAttribute("user", user);
+		
+		List<CourseDto> courses = this.courseService.getAllCourse();
+		model.addAttribute("courses", courses);
+		
 		return "user/new";
 	}
 	@PostMapping("/new")
 	public String createUser(@Valid UserDto user,Errors error)
 	{
+		System.out.println("New user post course Id "+user.getCourseId());
 		if( error.hasErrors())
 		{
 			System.out.println("Have Error ");
