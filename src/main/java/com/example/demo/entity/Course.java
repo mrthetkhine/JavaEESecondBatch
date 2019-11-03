@@ -35,7 +35,7 @@ public class Course implements Serializable {
 	@Column(name="description")
 	String description;
 
-	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "course")
     private Set<User> users;
 	
 	public Long getId() {

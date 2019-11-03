@@ -8,7 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.CourseJpaRepository;
-import com.example.demo.dao.UserJpaRespository;
+import com.example.demo.dao.UserJpaRepository;
 import com.example.demo.dto.UserDto;
 import com.example.demo.dto.UserNameEmailDto;
 import com.example.demo.dto.UserSearchDto;
@@ -21,7 +21,7 @@ import com.example.demo.service.specification.UserSpecification;
 public class UserServiceImpl implements UserService{
 
 	@Autowired
-	UserJpaRespository userJpaRepsitory;
+	UserJpaRepository userJpaRepsitory;
 	
 	@Autowired
 	CourseJpaRepository courseJpaRepository;

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.dao.CourseJpaRepository;
+import com.example.demo.dao.UserJpaRepository;
 import com.example.demo.dao.UserRepository;
 import com.example.demo.dto.CourseDto;
 import com.example.demo.dto.UserDto;
@@ -31,6 +32,9 @@ public class UserController {
 
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	UserJpaRepository userJpaRepository;
 	
 	@Autowired
 	CourseJpaRepository courseRepository;
@@ -50,8 +54,8 @@ public class UserController {
 		System.out.println("Controller User list");
 		
 		//this.userService.updateName("TK", 1L);
-		
-		
+		//User user1 = this.userJpaRepository.getOne(12L);
+		//this.userJpaRepository.delete(user1);
 		
 		return "user/users";
 	}

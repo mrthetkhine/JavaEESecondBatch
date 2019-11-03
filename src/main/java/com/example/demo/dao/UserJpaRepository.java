@@ -15,7 +15,7 @@ import com.example.demo.dto.UserNameEmailDto;
 import com.example.demo.entity.User;
 
 @Repository
-public interface UserJpaRespository extends JpaRepository<User, Long>,JpaSpecificationExecutor<User> {
+public interface UserJpaRepository extends JpaRepository<User, Long>,JpaSpecificationExecutor<User> {
 
 	List<User> findByName(String name);
 	
