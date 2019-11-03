@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dao.CourseJpaRepository;
 import com.example.demo.dao.UserJpaRespository;
 import com.example.demo.dto.UserDto;
 import com.example.demo.dto.UserNameEmailDto;
 import com.example.demo.dto.UserSearchDto;
+import com.example.demo.entity.Course;
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 import com.example.demo.service.specification.UserSpecification;
@@ -20,6 +22,9 @@ public class UserServiceImpl implements UserService{
 
 	@Autowired
 	UserJpaRespository userJpaRepsitory;
+	
+	@Autowired
+	CourseJpaRepository courseJpaRepository;
 	
 	@Override
 	public List<UserDto> getAllUser() {
@@ -39,6 +44,10 @@ public class UserServiceImpl implements UserService{
 	public void save(UserDto dto) {
 		
 		User user = dto.getEntity();
+		
+		Course course = this.courseJpaRepository.getOne(dto.getCourseId());
+		user.setCourse(course);
+		
 		this.userJpaRepsitory.save(user);
 	}
 

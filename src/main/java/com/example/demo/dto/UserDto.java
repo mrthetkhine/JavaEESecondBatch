@@ -65,12 +65,12 @@ public class UserDto {
 		user.setEmail(this.email);
 		user.setName(this.name);
 		
-		Course course = new Course();
+		//Course course = new Course();
 		//course.setId(this.courseId);
 		
-		course.setName("Web Dev");
-		course.setDescription("Web Dev");
-		user.setCourse(course);
+		//course.setName("Web Dev");
+		//course.setDescription("Web Dev");
+		//user.setCourse(course);
 		
 		return user;
 	}
