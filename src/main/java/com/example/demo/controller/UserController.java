@@ -88,8 +88,13 @@ public class UserController {
 	public String editUser(@PathVariable Long id,Model model)
 	{
 		System.out.println("User id in eidt "+id);
-		UserDto user = this.userRepository.findOne(id);
+		UserDto user = this.userService.findById(id);
 		model.addAttribute("user", user);
+		
+		List<CourseDto> courses = this.courseService.getAllCourse();
+		model.addAttribute("courses", courses);
+		
+		System.out.println("Edit Course id "+ user.getCourseId());
 		return "user/new";
 	}
 	@GetMapping("/delete/{id}")

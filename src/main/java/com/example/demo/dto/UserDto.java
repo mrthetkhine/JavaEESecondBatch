@@ -27,6 +27,7 @@ public class UserDto {
 		this.name = user.getName();
 		this.email = user.getEmail();
 		this.course = user.getCourse().getName();
+		this.courseId = user.getCourse().getId();
 		
 	}
 	public UserDto(Long id, String name, String email)

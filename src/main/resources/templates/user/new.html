@@ -23,7 +23,10 @@
      	</p>
      	
       Course <select th:field="*{courseId}">
-				<option th:each="course: ${courses}" th:value="${course.id}" th:text="${course.name}"/>
+				<option th:each="course: ${courses}" 
+				th:value="${course.id}" 
+				th:text="${course.name}"
+				th:selected="${user.courseId == course.id}"/>
 			</select>
 		</p>
         </p>      
