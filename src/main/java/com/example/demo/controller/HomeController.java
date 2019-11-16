@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,15 +11,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.demo.dao.BookJpaRepository;
+import com.example.demo.dao.StudentJpaRepository;
 import com.example.demo.dto.UserDto;
 import com.example.demo.entity.Book;
 import com.example.demo.entity.BookDetail;
+import com.example.demo.entity.StdCourse;
+import com.example.demo.entity.Student;
 
 @Controller	
 public class HomeController {
 	
 	@Autowired
 	BookJpaRepository bookRepository;
+	
+	@Autowired
+	StudentJpaRepository studentRepository;
 	
 	public void testOneToOne()
 	{
@@ -31,11 +39,38 @@ public class HomeController {
 		
 		this.bookRepository.save(book);
 	}
+	public void saveManyToMany()
+	{
+		Student st1 = new Student();
+		st1.setName("Student 1");
+		
+		Student st2 = new Student();
+		st2.setName("Student 2");
+		
+		StdCourse c1  = new StdCourse();
+		c1.setName("Course1");
+		
+		StdCourse c2  = new StdCourse();
+		c2.setName("Course 2");
+		
+		Set<StdCourse> courses = new HashSet<StdCourse>();
+		courses.add(c1);
+		courses.add(c2);
+		
+		st1.setCourses(courses);
+		st2.setCourses(courses);
+		
+		this.studentRepository.save(st1);
+		this.studentRepository.save(st2);
+	}
 	@GetMapping("/")
 	public String home(Model model)
 	{
 		model.addAttribute("message", "Hello World");
 		System.out.println("Controller Home");
+		
+		//this.testOneToOne();
+		this.saveManyToMany();
 		return "home";
 	}
 	/*
