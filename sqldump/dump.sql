@@ -18,6 +18,53 @@ USE `javaee_second_batch`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `book`
+--
+
+DROP TABLE IF EXISTS `book`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `book` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(45) DEFAULT NULL,
+  `book_detail_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `book`
+--
+
+LOCK TABLES `book` WRITE;
+/*!40000 ALTER TABLE `book` DISABLE KEYS */;
+/*!40000 ALTER TABLE `book` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `book_detail`
+--
+
+DROP TABLE IF EXISTS `book_detail`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `book_detail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `book_detail`
+--
+
+LOCK TABLES `book_detail` WRITE;
+/*!40000 ALTER TABLE `book_detail` DISABLE KEYS */;
+/*!40000 ALTER TABLE `book_detail` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `course`
 --
 
@@ -29,7 +76,7 @@ CREATE TABLE `course` (
   `name` varchar(45) DEFAULT NULL,
   `description` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +85,7 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (1,'JavaSE','JavaSE'),(2,'JavaEE','JavaEE');
+INSERT INTO `course` VALUES (1,'JavaSE','JavaSE'),(3,'Web Dev','Web Dev');
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,7 +104,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   KEY `course_id_idx` (`course_id`),
   CONSTRAINT `course_id` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +113,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,1,'TK','mrthetkhin@gmail.com'),(2,1,'TestUser','user@gmail.com'),(3,2,'TestUser 2','testuser2@gmail.com'),(7,2,'User four','userfour@gmail.com'),(8,1,'NewUser','newuser@gmail.com'),(9,1,'JavaSEUser','javaseuser@gmail.com'),(10,1,'JavaSEUser2','javaseuser2@gmail.com');
+INSERT INTO `user` VALUES (2,3,'TestUser','user@gmail.com'),(8,1,'NewUser','newuser@gmail.com'),(9,1,'JavaSEUser','javaseuser@gmail.com'),(10,1,'JavaSEUser2','javaseuser2@gmail.com'),(13,3,'user3 Test','user3@gmail.com');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,4 +130,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-02 19:11:50
+-- Dump completed on 2019-11-16 18:39:39
