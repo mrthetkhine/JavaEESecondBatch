@@ -63,6 +63,18 @@ public class HomeController {
 		this.studentRepository.save(st1);
 		this.studentRepository.save(st2);
 	}
+	public void addCourse()
+	{
+		Student st1 = this.studentRepository.getOne(1L);
+		
+		Set<StdCourse> courses = st1.getCourses();
+		StdCourse c3 = new StdCourse();
+		c3.setName("Course 3");
+		courses.add(c3);
+		
+		this.studentRepository.save(st1);
+		
+	}
 	@GetMapping("/")
 	public String home(Model model)
 	{
@@ -70,7 +82,8 @@ public class HomeController {
 		System.out.println("Controller Home");
 		
 		//this.testOneToOne();
-		this.saveManyToMany();
+		//this.saveManyToMany();
+		this.addCourse();
 		return "home";
 	}
 	/*
