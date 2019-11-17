@@ -8,7 +8,9 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.dao.BookJpaRepository;
 import com.example.demo.dao.StudentJpaRepository;
@@ -101,6 +103,14 @@ public class HomeController {
 		
 		this.userService.findById(-1L);
 		return "home";
+	}
+	@ExceptionHandler(Exception.class)
+	public void handleException(Exception ex)
+	{
+		System.out.println("Exception handler run");
+		ex.printStackTrace();
+	    //Do something additional if required
+	  
 	}
 	/*
 	@GetMapping("/user")
