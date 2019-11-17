@@ -20,6 +20,7 @@ class CourseServiceImpl implements CourseService{
 	
 	@Override
 	public List<CourseDto> getAllCourse() {
+		System.out.println("Get all course");
 		List<Course> courses = this.courseJpaRepository.findAll();
 		
 		List<CourseDto> dtos = new ArrayList<CourseDto>();
