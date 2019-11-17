@@ -17,6 +17,8 @@ import com.example.demo.entity.Book;
 import com.example.demo.entity.BookDetail;
 import com.example.demo.entity.StdCourse;
 import com.example.demo.entity.Student;
+import com.example.demo.service.CourseService;
+import com.example.demo.service.UserService;
 
 @Controller	
 public class HomeController {
@@ -26,6 +28,12 @@ public class HomeController {
 	
 	@Autowired
 	StudentJpaRepository studentRepository;
+	
+	@Autowired
+	CourseService courseService;
+	
+	@Autowired
+	UserService userService;
 	
 	public void testOneToOne()
 	{
@@ -83,7 +91,13 @@ public class HomeController {
 		
 		//this.testOneToOne();
 		//this.saveManyToMany();
-		this.addCourse();
+		
+		Student st1 = this.studentRepository.getOne(1L);
+		model.addAttribute("student", st1);
+		//this.addCourse();
+		
+		this.userService.getAllUser();
+		this.courseService.getAllCourse();
 		return "home";
 	}
 	/*
