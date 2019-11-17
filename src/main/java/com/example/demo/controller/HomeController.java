@@ -98,6 +98,8 @@ public class HomeController {
 		
 		this.userService.getAllUser();
 		this.courseService.getAllCourse();
+		
+		this.userService.findById(-1L);
 		return "home";
 	}
 	/*
