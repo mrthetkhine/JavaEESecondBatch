@@ -104,6 +104,7 @@ public class HomeController {
 		this.userService.findById(-1L);
 		return "home";
 	}
+	/*
 	@ExceptionHandler(Exception.class)
 	public void handleException(Exception ex)
 	{
@@ -112,6 +113,7 @@ public class HomeController {
 	    //Do something additional if required
 	  
 	}
+	*/
 	/*
 	@GetMapping("/user")
 	public String user(Model model)
