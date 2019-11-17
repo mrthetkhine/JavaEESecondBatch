@@ -3,6 +3,7 @@ package com.example.demo.aspect;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -17,11 +18,14 @@ public class ServiceAspect {
         //Advice
       System.out.println("Advice Before Run "+joinPoint);
     }
+	/*
 	@After("execution(* com.example.demo.service.*.*(..))")
     public void after(JoinPoint joinPoint) {
         //Advice
       System.out.println("Advice After Run "+joinPoint);
     }
+    */
+	/*
 	@Around("execution(* com.example.demo.service.*.*(..))")
     public void around(ProceedingJoinPoint joinPoint) {
         //Advice
@@ -34,4 +38,11 @@ public class ServiceAspect {
 	}
       System.out.println("Around After Run ");
     }
+	*/
+	@AfterReturning(value = "execution(* com.example.demo.service.*.*(..))", 
+			returning = "result")
+	public void afterReturning(JoinPoint joinPoint, Object result) {
+    	System.out.println("{} returned with value {}"+ joinPoint+ result);
+    	System.out.println("Return result "+result);
+	}
 }
