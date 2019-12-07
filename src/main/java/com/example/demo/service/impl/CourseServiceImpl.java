@@ -38,4 +38,11 @@ class CourseServiceImpl implements CourseService{
 		return new CourseDto(course);
 	}
 
+	@Override
+	public CourseDto createNewCourse(CourseDto dto) {
+		Course entity = dto.getEntity();
+		Course savedEntity = this.courseJpaRepository.save(entity);
+		return new CourseDto(savedEntity);
+	}
+
 }

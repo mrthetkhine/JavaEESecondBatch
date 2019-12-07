@@ -8,6 +8,11 @@ public class CourseDto {
 	String name;
 	String description;
 	
+	public CourseDto()
+	{
+		
+	}
+	
 	public CourseDto(Course course)
 	{
 		this.id = course.getId();
@@ -31,6 +36,15 @@ public class CourseDto {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public Course getEntity()
+	{
+		Course course= new Course();
+		course.setId(this.id);
+		course.setName(this.name);
+		course.setDescription(this.description);
+		
+		return course;
 	}
 	
 	
