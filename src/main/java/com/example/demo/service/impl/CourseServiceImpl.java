@@ -32,4 +32,10 @@ class CourseServiceImpl implements CourseService{
 		return dtos;
 	}
 
+	@Override
+	public CourseDto getCourseById(Long id) {
+		Course course = this.courseJpaRepository.getOne(id);
+		return new CourseDto(course);
+	}
+
 }
