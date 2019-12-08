@@ -3,6 +3,7 @@ package com.example.demo.dto;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.example.demo.dto.validation.ValidCourseName;
 import com.example.demo.entity.Course;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -11,7 +12,7 @@ public class CourseDto {
 	Long id;
 	
 	@NotNull
-	@Size(min=3, message="Name must be at least 5 characters long")
+	@ValidCourseName(message="name must begin with uppercase")
 	String name;
 	
 	@NotNull
