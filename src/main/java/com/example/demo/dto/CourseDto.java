@@ -1,6 +1,7 @@
 package com.example.demo.dto;
 
 import com.example.demo.entity.Course;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class CourseDto {
 	
@@ -37,6 +38,7 @@ public class CourseDto {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	@JsonIgnore
 	public Course getEntity()
 	{
 		Course course= new Course();
