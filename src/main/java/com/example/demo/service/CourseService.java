@@ -8,4 +8,5 @@ public interface CourseService {
 	List<CourseDto> getAllCourse();
 	CourseDto getCourseById(Long id);
 	CourseDto createNewCourse(CourseDto dto);
+	CourseDto updateCourse(CourseDto dto);
 }
