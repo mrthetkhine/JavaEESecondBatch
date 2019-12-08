@@ -3,6 +3,7 @@ package com.example.demo.controller.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,5 +44,12 @@ public class CourseApi {
 		 courseDto.setId(id);
 		 System.out.println("Update  Course");
         return this.courseService.createNewCourse(courseDto);
+     }
+	 @DeleteMapping(path="/{id}")
+     public void deleteCourse(@PathVariable("id") Long id) 
+     {
+		
+		 System.out.println("Delete  Course");
+         this.courseService.deleteCourseById(id);
      }
 }
