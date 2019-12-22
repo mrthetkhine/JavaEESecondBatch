@@ -79,7 +79,7 @@ CREATE TABLE `course` (
   `name` varchar(45) DEFAULT NULL,
   `description` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88,8 +88,32 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (1,'JavaSE','JavaSE'),(3,'Web Dev','Web Dev'),(4,'JavaEE','Java EE Course'),(5,'PHP','Server side development with PHP');
+INSERT INTO `course` VALUES (1,'JavaSE','JavaSE'),(3,'Web Dev','Web Dev'),(4,'JavaEE','Java EE Course'),(6,'PHP','Server side programming language'),(7,'PHP','Server side programming language');
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `role`
+--
+
+DROP TABLE IF EXISTS `role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `role_name` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `role`
+--
+
+LOCK TABLES `role` WRITE;
+/*!40000 ALTER TABLE `role` DISABLE KEYS */;
+INSERT INTO `role` VALUES (1,'ROLE_ADMIN'),(2,'ROLE_USER');
+/*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -176,6 +200,7 @@ CREATE TABLE `user` (
   `email` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `course_id` bigint(20) DEFAULT NULL,
+  `password` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKj8ce5cjkm11igsffixdxexrr9` (`course_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
@@ -187,8 +212,35 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'user1@gmail.com','USer1',1),(2,'user2@gmail.com','USer2',1),(3,'user3@gmail.com','USer3',3),(4,'user4@gmail.com','USer4',3),(5,'user5@gmail.com','USer5',4);
+INSERT INTO `user` VALUES (1,'user1@gmail.com','user1',1,'$2a$10$1F8L3NBqZIs9C0flwXxbTu0wWuw4C6NMv5E6jqeV1nZ.NsqleI/Ze'),(2,'user2@gmail.com','user2',1,'$2a$10$1F8L3NBqZIs9C0flwXxbTu0wWuw4C6NMv5E6jqeV1nZ.NsqleI/Ze'),(3,'user3@gmail.com','user3',3,'$2a$10$1F8L3NBqZIs9C0flwXxbTu0wWuw4C6NMv5E6jqeV1nZ.NsqleI/Ze'),(4,'user4@gmail.com','USer4',3,'$2a$10$1F8L3NBqZIs9C0flwXxbTu0wWuw4C6NMv5E6jqeV1nZ.NsqleI/Ze'),(5,'user5@gmail.com','USer5',4,'$2a$10$1F8L3NBqZIs9C0flwXxbTu0wWuw4C6NMv5E6jqeV1nZ.NsqleI/Ze');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_role`
+--
+
+DROP TABLE IF EXISTS `user_role`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `role_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `role_id_fk_idx` (`role_id`),
+  CONSTRAINT `role_id_fk` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_role`
+--
+
+LOCK TABLES `user_role` WRITE;
+/*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
+INSERT INTO `user_role` VALUES (1,1,1),(2,2,2);
+/*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -204,4 +256,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-08 18:00:05
+-- Dump completed on 2019-12-22 18:49:03
