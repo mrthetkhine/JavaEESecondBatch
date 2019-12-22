@@ -17,7 +17,7 @@ import com.example.demo.entity.User;
 @Repository
 public interface UserJpaRepository extends JpaRepository<User, Long>,JpaSpecificationExecutor<User> {
 
-	List<User> findByName(String name);
+	User findByName(String name);
 	
 	@Query("FROM User WHERE name LIKE CONCAT('%',:name,'%') ")
 	List<User> findByNameLike(@Param("name")String name);
