@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.dao.BookJpaRepository;
 import com.example.demo.dao.StudentJpaRepository;
+import com.example.demo.dto.ItemDto;
 import com.example.demo.dto.UserDto;
 import com.example.demo.entity.Book;
 import com.example.demo.entity.BookDetail;
@@ -130,6 +133,30 @@ public class HomeController {
 		
 		System.out.println("Admin route");
 		return "admin";
+	}
+	@GetMapping("/addToCart")
+	String addToCart(Model model){
+		System.out.println("addToCart get");
+		ItemDto item = new ItemDto();
+		model.addAttribute("item", item);
+		return "addToCart";
+	}
+	@PostMapping("/addToCart")
+	String addToCart(Model model, ItemDto itemDto,HttpSession session){
+		System.out.println("addToCart post "+itemDto.getName());
+		ItemDto item = new ItemDto();
+		model.addAttribute("item", item);
+		List<ItemDto> items = (List<ItemDto>) session.getAttribute("cartItems");
+
+		if (items == null) {
+			items = new ArrayList<>();
+		}
+		items.add(itemDto);
+		session.setAttribute("cartItems", items);
+		System.out.println("Item count "+items.size());
+		
+		model.addAttribute("items", items);
+		return "addToCart";
 	}
 	/*
 	@ExceptionHandler(Exception.class)
