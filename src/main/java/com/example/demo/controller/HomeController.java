@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -142,7 +143,12 @@ public class HomeController {
 		return "addToCart";
 	}
 	@PostMapping("/addToCart")
-	String addToCart(Model model, ItemDto itemDto,HttpSession session){
+	String addToCart(Model model, 
+			ItemDto itemDto,
+			HttpSession session,
+			Principal principal){
+		
+		System.out.println("User name "+ principal.getName());
 		System.out.println("addToCart post "+itemDto.getName());
 		ItemDto item = new ItemDto();
 		model.addAttribute("item", item);
