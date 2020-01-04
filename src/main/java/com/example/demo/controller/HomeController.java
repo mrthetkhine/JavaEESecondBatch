@@ -164,6 +164,16 @@ public class HomeController {
 		model.addAttribute("items", items);
 		return "addToCart";
 	}
+	@GetMapping("/clear")
+	String clear(Model model,HttpSession session){
+		System.out.println("addToCart get");
+		
+		ItemDto item = new ItemDto();
+		model.addAttribute("item", item);
+		
+		session.invalidate();
+		return "addToCart";
+	}
 	/*
 	@ExceptionHandler(Exception.class)
 	public void handleException(Exception ex)
