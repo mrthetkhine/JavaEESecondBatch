@@ -1,0 +1,29 @@
+<html>
+    <script>
+        var arr = [1,4,6,7,9];
+
+        var square = [];
+        var sum =0;
+        for(var i=0;i < arr.length; i++)
+        {
+            if( arr [i] %2 ==0)
+            {
+                var sq = arr[i] * arr[i];
+                sum += sq;
+                square.push(sq);
+            }
+            
+        }
+
+        var even = ele => ele % 2 ==0;
+        var odd = ele => ! even(ele);
+        var fpSquare = arr
+                .filter( even )
+                .map( ele => ele * ele)
+                .reduce((a,b) => a +b);
+        console.log("Arr ", arr);
+        console.log("Square " , square);
+        console.log("Sum ",sum);
+        console.log("FP Square ",fpSquare);
+    </script>
+</html>
