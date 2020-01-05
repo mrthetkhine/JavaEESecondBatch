@@ -4,7 +4,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class FPTest {
-	public static void main(String[]args)
+	public static void main(String ...args)
 	{
 		List<Integer> arr = Arrays.asList(1,4,6,7,9);
 		
